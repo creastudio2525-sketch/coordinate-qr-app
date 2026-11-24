@@ -249,6 +249,7 @@ textarea:focus-visible {
   .qr-brand {
     min-height: 44px;
     gap: 10px;
+    padding-right: 88px;
   }
 
   .qr-brand::before {
@@ -345,5 +346,157 @@ textarea:focus-visible {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+.tour-launcher {
+  position: fixed;
+  z-index: 30;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(16px, calc((100vw - 1180px) / 2));
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 15px;
+  border: 1px solid var(--qr-blue);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--qr-navy);
+  font-size: 0.875rem;
+  font-weight: 800;
+  box-shadow: 0 3px 12px rgb(22 40 75 / 12%);
+  cursor: pointer;
+}
+
+.tour-launcher:hover {
+  background: #eef8fd;
+}
+
+.tour-launcher:focus-visible,
+.tour-panel button:focus-visible {
+  outline: 3px solid rgb(38 157 216 / 60%);
+  outline-offset: 3px;
+}
+
+.tour-scrim {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  border: 0;
+  background: rgb(16 24 48 / 68%);
+  cursor: default;
+}
+
+.tour-highlight {
+  position: relative !important;
+  z-index: 1001 !important;
+  isolation: isolate;
+  outline: 3px solid var(--qr-blue) !important;
+  outline-offset: 4px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 8px rgb(38 157 216 / 18%) !important;
+}
+
+.tour-panel {
+  position: fixed;
+  z-index: 1002;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 12px;
+  width: min(560px, calc(100vw - 24px));
+  max-height: min(48dvh, 360px);
+  margin-inline: auto;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid #dce4ef;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--qr-text);
+  box-shadow: 0 14px 42px rgb(10 20 44 / 32%);
+  font-family: Meiryo, "メイリオ", "Yu Gothic UI", "Yu Gothic", sans-serif;
+}
+
+.tour-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tour-panel h2 {
+  margin: 0;
+  color: var(--qr-navy);
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.tour-counter {
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #eaf6fc;
+  color: var(--qr-navy);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.tour-panel p {
+  margin: 12px 0 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.tour-panel-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tour-panel button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #cfd9e7;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--qr-navy);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tour-panel .tour-next {
+  border-color: var(--qr-navy);
+  background: var(--qr-navy);
+  color: #fff;
+}
+
+.tour-panel button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .tour-launcher {
+    top: max(8px, env(safe-area-inset-top));
+    right: 10px;
+    padding-inline: 11px;
+    font-size: 0.8rem;
+  }
+
+  .tour-panel {
+    padding: 16px;
+  }
+
+  .tour-panel-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .tour-panel-actions button {
+    padding-inline: 8px;
   }
 }
