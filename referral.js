@@ -10,6 +10,20 @@
     return new URL(window.location.pathname, window.location.origin).href;
   }
 
+  function createBrandLink() {
+    const brand = document.querySelector(".qr-brand");
+    if (!brand || brand.querySelector(".qr-brand-link")) return;
+
+    const link = document.createElement("a");
+    link.className = "qr-brand-link";
+    link.href = "https://member.creastudio.co.jp/index.php";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", "CreaStudioトップを新しいタブで開く");
+    link.title = "CreaStudioトップを新しいタブで開く";
+    brand.prepend(link);
+  }
+
   function createEntry() {
     const main = document.querySelector(".qr-main");
     const tabs = main?.querySelector(".mode-tabs");
@@ -139,10 +153,12 @@
   let attempts = 0;
   const initialize = window.setInterval(() => {
     const root = document.querySelector("#root");
+    createBrandLink();
     createEntry();
     if (root && document.querySelector(".referral-entry")) {
       window.clearInterval(initialize);
       entryObserver = new MutationObserver(() => {
+        createBrandLink();
         if (!document.querySelector(".referral-entry")) createEntry();
       });
       entryObserver.observe(root, { childList: true, subtree: true });
